@@ -25,14 +25,13 @@ void drawCircle(int x, int y, int r){
 
         glBegin(GL_TRIANGLE_FAN);
 
-        glTexCoord2f(x / 500, y / 500);
+        glTexCoord2f(0.5, 0.5);
         glVertex2f(x, y);
-        glTexCoord2f(x / 500, (y + r) / 500);
+        glTexCoord2f(0.5, 1);
         glVertex2f(x, y + r);
 
-        for (int i = 0; i < 360; i++) {
-            glTexCoord2f((x - r * cos(PI * (i + 270) / 180) + 1) / 2, (y + r * sin(PI * (i + 270) / 180) + 1) / 2);
-            glVertex2f(x + sin(i + 1) * r, y + cos(i + 1) * r);
+        for (int i = 0; i < 10000; i++) {
+            glVertex2f(x + sin(((2 * PI) / 10000) * i) * r, y + cos(((2 * PI) / 10000) * i) * r);
         }
         
         glEnd();
@@ -42,7 +41,7 @@ int main(int argc, char** argv){
 
     SDL_Init(SDL_INIT_VIDEO);
 
-    SDL_Window* window = SDL_CreateWindow("OpenGL", 100, 100, 500, 500, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
+    SDL_Window* window = SDL_CreateWindow("Mantle", 100, 100, 1000, 1000, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
     SDL_GLContext context = SDL_GL_CreateContext(window);
     SDL_Event event;
 
